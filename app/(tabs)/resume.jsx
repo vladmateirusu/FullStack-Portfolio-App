@@ -13,9 +13,9 @@ import {
   ScrollView,
 } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+import {resumeStyles} from '../../assets/styles/resume'
 
-// Enable LayoutAnimation on Android
+
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
@@ -29,9 +29,9 @@ const AccordionSection = ({ title, children }) => {
   };
 
   return (
-    <View style={styles.section}>
+    <View style={resumeStyles.section}>
       <TouchableOpacity onPress={toggleExpand}>
-        <Text style={styles.sectionHeader}>
+        <Text style={resumeStyles.sectionHeader}>
           {expanded ? '▼' : '▶'} {title}
         </Text>
       </TouchableOpacity>
@@ -42,25 +42,25 @@ const AccordionSection = ({ title, children }) => {
 const SchoolSection = ({ school, city, year, program, notes }) => {
   return (
     <View style={{marginBottom:5}}>
-      <Text style={styles.subHeader}>
+      <Text style={resumeStyles.subHeader}>
         {school} -
-        <Text style={styles.lightText}> {city}</Text>
+        <Text style={resumeStyles.lightText}> {city}</Text>
       </Text>
-      <Text style={styles.whiteText}>{year}</Text>
-      <Text style={styles.programText}>{program}</Text>
-      <Text style={styles.whiteText}>{notes}</Text>
+      <Text style={resumeStyles.whiteText}>{year}</Text>
+      <Text style={resumeStyles.programText}>{program}</Text>
+      <Text style={resumeStyles.whiteText}>{notes}</Text>
     </View>
   );
 };
 
 
-export default function resume() {
+export default function Resume() {
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={[styles.container, { flexGrow: 1 }]}>
+    <SafeAreaView style={resumeStyles.safeArea}>
+      <ScrollView contentContainerStyle={[resumeStyles.container, { flexGrow: 1 }]}>
         <Image
           source={require('../../assets/images/PIC.jpeg')}
-          style={styles.image}
+          style={resumeStyles.image}
         />
 
         <AccordionSection title="Education">
@@ -81,64 +81,17 @@ export default function resume() {
         </AccordionSection>
 
         <AccordionSection title="Skills">
-          <Text style={styles.whiteText}>Coming soon...</Text>
+          <Text style={resumeStyles.whiteText}>Coming soon...</Text>
         </AccordionSection>
 
         <AccordionSection title="Work Experience">
-          <Text style={styles.whiteText}>Coming soon...</Text>
+          <Text style={resumeStyles.whiteText}>Coming soon...</Text>
         </AccordionSection>
 
         <AccordionSection title="Contact Me">
-          <Text style={styles.whiteText}>Coming soon...</Text>
+          <Text style={resumeStyles.whiteText}>Coming soon...</Text>
         </AccordionSection>
       </ScrollView>
     </SafeAreaView>
   );
-}
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: 'black',
-  },
-  container: {
-  flexGrow: 1,
-  alignItems: 'center',
-  padding: 16,
-},
-  section: {
-    width: 300,
-    borderRadius: 6,
-    padding: 16,
-    marginBottom: 20,
-    backgroundColor: '#1a1a1a',
-  },
-  sectionHeader: {
-    color: 'white',
-    marginBottom: 10,
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  image: {
-    height: 200,
-    width: 200,
-    borderRadius: 100,
-    marginBottom: 20,
-  },
-  whiteText: {
-    color: 'white',
-    marginBottom: 5,
-  },
-  subHeader: {
-    fontWeight: '600',
-    color: 'white',
-  },
-  lightText: {
-    fontWeight: '100',
-    color: 'white',
-  },
-  programText:{
-    fontStyle: 'italic',
-    color:"white",
-  }
-});
+};
